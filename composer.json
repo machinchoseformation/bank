@@ -5,6 +5,9 @@
         "slim/slim": "~2.6",
         "inacho/php-credit-card-validator": "~1.0"
     },
+    "autoload": {
+        "psr-4": {"": "src/"}
+    },
     "authors": [
         {
             "name": "guillaume",
