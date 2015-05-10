@@ -9,7 +9,7 @@
         private $app;
         private $response;
         private $isValid = true;
-        private $ccType;
+        private $ccType;    //credit card type
         private $validCurrencies = array("eur");
 
         public function __construct($app, $response)
@@ -18,16 +18,85 @@
             $this->response = $response;
         }
 
-        public function isValid()
+        public function validatePaymentCreate()
         {
-            return $this->isValid;
+            $this->validateCcn();
+            $this->validateCvv();
+            $this->validateExp();
+            $this->validateAmo();
+            $this->validateCur();
+            $this->validateMid();
+            $this->validateTim();
+            $this->validateTok();
+
+            return $this;
+        }
+
+        public function validateTok()
+        {
+            $tok = $this->get("tok");
+            if (empty($tok)){
+                return $this->addError("tok is empty. Please provide a transaction token.");
+            }
+
+            $merchantDb = new \Bank\Client\Database();
+            $mid = $this->get("mid");
+            $string =   $merchantDb->getMerchantSecret($mid).
+                        $mid. 
+                        $this->get("ccn"). 
+                        $this->get("amo"). 
+                        $this->get("tim");
+
+            $token = hash("sha256", $string);
+
+            if ($token !== $tok){
+                return $this->addError("tok is not valid.");
+            }
+
+            return true;
+        }
+
+        public function validateTim()
+        {
+            $tim = $this->get("tim");
+            if (empty($tim)){
+                return $this->addError("tim is empty. Please provide a UNIX timestamp for your transaction.");
+            }
+
+            $thirdySecondsAgo = strtotime("- 30 minutes");
+
+            if ($tim < $thirdySecondsAgo){
+                return $this->addError("tim must be max 30 minutes from now.");
+            }
+            elseif($tim > time()){
+                return $this->addError("tim must be present or in the past.");
+            }
+
+            return true;
+        }
+
+        public function validateMid()
+        {
+            $mid = $this->get("mid");
+            if (empty($mid)){
+                return $this->addError("mid is empty. Please provide a merchant ID.");
+            }
+
+            $merchantDb = new \Bank\Client\Database();
+            $merchant = $merchantDb->getMerchant($mid);
+            
+            if (!$merchant){
+                return $this->addError("merchant id not found");
+            }
+
+            return true;
         }
 
         public function validateCcn()
         {
             $ccn = $this->get("ccn");
             if (empty($ccn)){
-                return $this->addError("ccn is empty");
+                return $this->addError("ccn is empty. Please provide a credit card number.");
             }
 
             $validationResult = CreditCardValidator::validCreditCard($ccn);
@@ -45,7 +114,7 @@
         {
             $cvv = $this->get("cvv");
             if (empty($cvv)){
-                return $this->addError("cvv is empty");
+                return $this->addError("cvv is empty. Please provide a little number on the back.");
             }
 
             //if the credit card type was not found previously, abort, no way to validate
@@ -65,7 +134,7 @@
         {
             $exp = $this->get("exp");
             if(empty($exp)){
-                return $this->addError("exp is empty");
+                return $this->addError("exp is empty. Please provide a credit card expiry date.");
             }
 
             if (!preg_match("#^\d{6}$#", $exp)){
@@ -86,7 +155,7 @@
         {
             $amo = $this->get("amo");
             if(empty($amo)){
-                return $this->addError("amo is empty");
+                return $this->addError("amo is empty. Please provide a transaction amount.");
             }
 
             if (!preg_match("#^\d+$#", $amo)){
@@ -100,7 +169,7 @@
         {
             $cur = $this->get("cur");
             if(empty($cur)){
-                return $this->addError("cur is empty");
+                return $this->addError("cur is empty. Please provide a transaction currency.");
             }
 
             if (!in_array($cur, $this->validCurrencies)){
@@ -108,6 +177,11 @@
             }
 
             return true;
+        }
+
+        public function isValid()
+        {
+            return $this->isValid;
         }
 
         private function addError($message)

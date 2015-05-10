@@ -8,6 +8,7 @@
         private $message;
         private $data;
         private $errors = array();
+        private $status;
 
         public function send()
         {
@@ -31,5 +32,13 @@
         public function addError($error)
         {
             $this->errors[] = $error;
+        }
+
+        public function setMessage($message){
+            $this->message = $message;
+        }
+        
+        public function setData($data){
+            $this->data = $data;
         }
     }

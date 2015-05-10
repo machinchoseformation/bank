@@ -15,16 +15,17 @@
         $response = new JsonResponse();
         $validator = new RequestParamsValidator($app, $response);
 
-        $validator->validateCcn();
-        $validator->validateCvv();
-        $validator->validateExp();
-        $validator->validateAmo();
-        $validator->validateCur();
+        $validator->validatePaymentCreate();
 
         //request seems valid...
         if ($validator->isValid()){
             //simulates a payment
+            sleep(1);
             //alter response
+            $response->setMessage("Payment created");
+            $response->setData(
+                $app->request->get()
+            );
         }
 
         $response->send();
