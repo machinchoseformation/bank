@@ -1,0 +1,14 @@
+{
+    "name": "Guillaume/bank",
+    "description": "Fake bank API",
+    "require": {
+        "slim/slim": "~2.6",
+        "inacho/php-credit-card-validator": "~1.0"
+    },
+    "authors": [
+        {
+            "name": "guillaume",
+            "email": "gsylvestre@gmail.com"
+        }
+    ]
+}
