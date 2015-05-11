@@ -98,7 +98,7 @@
 				<li>Generate a sha256 hash of that string. This is your tok.</li>
 			</ol>
 
-			<h4>Demo query</h4>
+			<h3>Demo query</h3>
 			<p>This is a demo query URI for the following data:</p>
 			<table class="table table-striped">
 				<tr>
@@ -121,10 +121,34 @@
 					<td><?php echo $tim; ?></td>
 				</tr>
 			</table>
+
+			<h4>Demo query URI</h4>
 			<?php 
 				$link = "http://localhost/bank/payment/create?ccn=$ccn&cvv=123&exp=122017&amo=$amo&cur=eur&mid=$mid&tim=$tim&tok=$tok";
 			?>
 			<pre><a href="<?php echo $link; ?>"><?php echo $link; ?></a></pre>
+
+			<h4>Demo response</h4>
+<pre>
+	{
+	   "transaction_id":"55506fad526f3",
+	   "status":"payment_ok",
+	   "message":"Payment created",
+	   "data":{
+	      "ccn":"4485491159053724",
+	      "cvv":"123",
+	      "exp":"122017",
+	      "amo":"99",
+	      "cur":"eur",
+	      "mid":"abcd2345abcd2345abcd2345abcd2345",
+	      "tim":"1431334815",
+	      "tok":"c6614323a0e04438476d55711f876b12343a4ad4f7a08f1b084fe16625cd235d"
+	   },
+	   "errors":[
+
+	   ]
+	}
+</pre>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,28 @@
+{
+    "merchants": [
+        {
+            "mid": "6nmet3c4zthdzb23f9y5z9awrzp7v7un",
+            "secret": "gm3sygqerettmeqtwbyma7tye868mpv6zys4x6yk688dekbxkd29ubhgtfmpgmz6vaf8g5vgfesmzbgbfmkbkkuqftz6mdm2zs6dbyar28k4bx7b3sepbvnrm7wuxy74"
+        },
+        {
+            "mid": "6sxx47ngah6wr36czp4q9wmfup3kxv6m",
+            "secret": "3prkrbhtqhhwxgea3v72m6x24zdwbezkb3sx6rdrwk87bqht4ehsc9znabn7m782zk925n9s96h8r8ctn9nq6ev6fbkw5gt3axp7b8xfhcp25su6cvphc7xgwky24fyw"
+        },
+        {
+            "mid": "3y7deetw7ktq7h6a8rgkuz8f72eu9qds",
+            "secret": "7any6kx488vqdnvcnunbk34aa96tcdngzf38k4rwqaemdtwpxvkz5k27caf7xvfz63hpebdcfsgm2fqp3z7ucsdwzk9r9axb4enfdcb4y25ftxyumg9ckepkkgk58xem"
+        },
+        {
+            "mid": "bduca87w3a5zvzm4y248wehtd7dykw8n",
+            "secret": "dxgbe5zsur5de292zp2w3cbm3hv4vxh5ee8mdmgp9xudhcsh33sb7dhn7dv6rb6r9sbyv93zasne8wghacfnfdwcznuu58ptte6y9cnsuks5kxtzfnybe2mxddfkvksb"
+        },
+        {
+            "mid": "prtv56ky9as3pq7m7rbgxmhm5pwhybca",
+            "secret": "96pu5vy8gc7449eudxcngk6bt6ahkgpy8d74q2wd4sddhg23q6wrf2bx2t5p6gxkh7ze5fmcz2fzd4tu4hvhm5zdqf7hfymxbvuzn9hffq6d7cswx4d2zrcakc9p6zgt"
+        },
+        {
+            "mid": "abcd2345abcd2345abcd2345abcd2345",
+            "secret": "pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876"
+        }
+    ]
+}
