@@ -20,10 +20,12 @@
 
         private function prepare()
         {
-            $content = array();
-            $content['errors'] = $this->errors;
-            $content['data'] = $this->data;
-            $content['message'] = $this->message;
+            $content = array(
+                'status' => $this->status,
+                'message' => $this->message,
+                'data' => $this->data,
+                'errors' => $this->errors,
+            );
 
             $json_content = json_encode($content);
             return $json_content;
@@ -34,11 +36,23 @@
             $this->errors[] = $error;
         }
 
-        public function setMessage($message){
+        public function setMessage($message)
+        {
             $this->message = $message;
         }
         
-        public function setData($data){
+        public function setData($data)
+        {
             $this->data = $data;
+        }
+
+        public function setStatus($status)
+        {
+            $this->status = $status;
+        }
+
+        public function getStatus()
+        {
+            return $this->status;
         }
     }

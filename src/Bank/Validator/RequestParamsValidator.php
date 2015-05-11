@@ -206,6 +206,7 @@
         {
             $this->isValid = false;
             $this->response->addError($message);
+            $this->response->setStatus("request_error");
             return false;
         }
 

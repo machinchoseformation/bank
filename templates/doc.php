@@ -75,6 +75,12 @@
 					<td>sha256 string (hexadecimal, 64 characters length)</td>
 					<td>e9058ab198f6908f702111b0c0fb5b36f99[...]</td>
 				</tr>
+				<tr>
+					<td>tes</td>
+					<td>Optionnal. Simulates a rejected payment if set to "rejected"</td>
+					<td>String. Only "rejected" supported for the moment.</td>
+					<td>rejected</td>
+				</tr>
 			</table>
 
 			<h4>Token (tok) parameter generation</h4>
@@ -91,6 +97,34 @@
 				</li>
 				<li>Generate a sha256 hash of that string. This is your tok.</li>
 			</ol>
+
+			<h4>Demo query</h4>
+			<p>This is a demo query URI for the following data:</p>
+			<table class="table table-striped">
+				<tr>
+					<td>Payment</td>
+					<td><?php echo $amo ?> €</td>
+				</tr>
+				<tr>
+					<td>Credit card</td>
+					<td><?php echo $ccn; ?></td>
+				<tr>
+					<td>Merchant id</td>
+					<td>abcd2345abcd2345abcd2345abcd2345</td>
+				</tr>
+				<tr>
+					<td>Merchant secret</td>
+					<td>pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876pipo9876[...]</td>
+				</tr>
+				<tr>
+					<td>Transaction time</td>
+					<td><?php echo $tim; ?></td>
+				</tr>
+			</table>
+			<?php 
+				$link = "http://localhost/bank/payment/create?ccn=$ccn&cvv=123&exp=122017&amo=$amo&cur=eur&mid=$mid&tim=$tim&tok=$tok";
+			?>
+			<a href="<?php echo $link; ?>"><?php echo $link; ?></a>
 		</div>
 	</body>
 </html>
