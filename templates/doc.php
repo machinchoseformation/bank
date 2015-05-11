@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css">
 
 		<link rel="stylesheet" href="public/css/style.css" />
 
@@ -18,8 +18,11 @@
 		<div class="container">
 			<h1>Bank API documentation</h1>
 
-			<h3>Create a payment</h3>
+			<h2>Create a payment</h2>
+			<p>Send all queries to:</p>
+			<pre>http://localhost/bank/payment/create</pre>
 
+			<h3>Query parameters</h3>
 			<table class="table table-striped">
 				<tr>
 					<th>Parameter</th>
@@ -83,7 +86,7 @@
 				</tr>
 			</table>
 
-			<h4>Token (tok) parameter generation</h4>
+			<h3>Token (tok) parameter generation</h3>
 			<p>To generate a transaction "tok":</p>
 			<ol>
 				<li>Concatenate, with no spaces, no dashes, and in that precise sequence:
@@ -97,8 +100,12 @@
 				</li>
 				<li>Generate a sha256 hash of that string. This is your tok.</li>
 			</ol>
+			<p>In PHP, that would look like that:</p>
+			<code>$tmp = $secret . $mid . $ccn . $amo . $tim;</code><br />
+			<code>$tok = hash("sha256", $tmp);</code>
+			
 
-			<h3>Demo query</h3>
+			<h2>Demo query</h2>
 			<p>This is a demo query URI for the following data:</p>
 			<table class="table table-striped">
 				<tr>
@@ -122,13 +129,13 @@
 				</tr>
 			</table>
 
-			<h4>Demo query URI</h4>
+			<h3>Demo query URI</h3>
 			<?php 
 				$link = "http://localhost/bank/payment/create?ccn=$ccn&cvv=123&exp=122017&amo=$amo&cur=eur&mid=$mid&tim=$tim&tok=$tok";
 			?>
 			<pre><a href="<?php echo $link; ?>"><?php echo $link; ?></a></pre>
 
-			<h4>Demo response</h4>
+			<h3>Demo response</h3>
 <pre>
 	{
 	   "transaction_id":"55506fad526f3",
