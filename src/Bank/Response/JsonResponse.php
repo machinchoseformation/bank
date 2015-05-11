@@ -7,8 +7,14 @@
 
         private $message;
         private $data;
+        private $id;
         private $errors = array();
         private $status;
+
+        public function __construct()
+        {
+            $this->id = uniqid();
+        }
 
         public function send()
         {
@@ -21,6 +27,7 @@
         private function prepare()
         {
             $content = array(
+                'transaction_id' => $this->id,
                 'status' => $this->status,
                 'message' => $this->message,
                 'data' => $this->data,

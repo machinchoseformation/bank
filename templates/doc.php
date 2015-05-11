@@ -124,7 +124,7 @@
 			<?php 
 				$link = "http://localhost/bank/payment/create?ccn=$ccn&cvv=123&exp=122017&amo=$amo&cur=eur&mid=$mid&tim=$tim&tok=$tok";
 			?>
-			<a href="<?php echo $link; ?>"><?php echo $link; ?></a>
+			<pre><a href="<?php echo $link; ?>"><?php echo $link; ?></a></pre>
 		</div>
 	</body>
 </html>
