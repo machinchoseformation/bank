@@ -31,4 +31,17 @@
         $response->send();
     });
 
+    $app->get("/merchant/generate/:num", function($num){
+        $merchants = array("merchants" => array());
+        for($i=0;$i<$num;$i++){
+            $m = array();
+            $m["mid"] = \Bank\Util\StringUtil::randomString(32);
+            $m["secret"] = \Bank\Util\StringUtil::randomString(128);
+
+            $merchants["merchants"][] = $m;
+        }
+        $json = json_encode($merchants, JSON_PRETTY_PRINT);
+        file_put_contents("merchants.json", $json);
+    });
+
     $app->run();

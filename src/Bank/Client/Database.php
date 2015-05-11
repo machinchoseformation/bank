@@ -5,30 +5,19 @@
     class Database
     {
 
-        private $merchants = array
-        (
-            array(
-                "id" => "a",
-                "secret" => "ab"
-            ),
-            array(
-                "id" => "b",
-                "secret" => "bc"
-            ),
-            array(
-                "id" => "c",
-                "secret" => "cd"
-            ),
-            array(
-                "id" => "d",
-                "secret" => "de"
-            ),
-        );
+        private $merchants = array();
 
-        public function getMerchant($id)
+        public function __construct()
+        {
+            $dbContent = file_get_contents("merchants.json");
+            $array = json_decode($dbContent, true);
+            $this->merchants = $array["merchants"];
+        }
+
+        public function getMerchant($mid)
         {
             for($i=0,$count=count($this->merchants);$i<$count;$i++){
-                if ($this->merchants[$i]['id'] == $id){
+                if ($this->merchants[$i]['mid'] == $mid){
                     return $this->merchants[$i];
                 }
             }
@@ -36,10 +25,10 @@
             return false;
         }
 
-        public function getMerchantSecret($id)
+        public function getMerchantSecret($mid)
         {
             for($i=0,$count=count($this->merchants);$i<$count;$i++){
-                if ($this->merchants[$i]['id'] == $id){
+                if ($this->merchants[$i]['mid'] == $mid){
                     return $this->merchants[$i]['secret'];
                 }
             }

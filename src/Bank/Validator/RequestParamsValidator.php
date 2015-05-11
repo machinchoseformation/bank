@@ -39,6 +39,10 @@
                 return $this->addError("tok is empty. Please provide a transaction token.");
             }
 
+            if (!preg_match("#^[a-f0-9]{64}$#", $tok)){
+                return $this->addError("tok format is not valid (64 hexadecimal characters)");
+            }
+
             $merchantDb = new \Bank\Client\Database();
             $mid = $this->get("mid");
             $string =   $merchantDb->getMerchantSecret($mid).
@@ -63,6 +67,10 @@
                 return $this->addError("tim is empty. Please provide a UNIX timestamp for your transaction.");
             }
 
+            if (!preg_match("#^\d{10}$#", $tim)){
+                return $this->addError("tim format is not valid (10 digits)");
+            }
+
             $thirdySecondsAgo = strtotime("- 30 minutes");
 
             if ($tim < $thirdySecondsAgo){
@@ -82,6 +90,10 @@
                 return $this->addError("mid is empty. Please provide a merchant ID.");
             }
 
+            if (!preg_match("#^[a-z0-9]{32}$#", $mid)){
+                return $this->addError("mid format is not valid (32 lowercase characters)");
+            }
+
             $merchantDb = new \Bank\Client\Database();
             $merchant = $merchantDb->getMerchant($mid);
             
@@ -97,6 +109,10 @@
             $ccn = $this->get("ccn");
             if (empty($ccn)){
                 return $this->addError("ccn is empty. Please provide a credit card number.");
+            }
+
+            if (!preg_match("#^\d+$#", $ccn)){
+                return $this->addError("ccn format is not valid (only digits)");
             }
 
             $validationResult = CreditCardValidator::validCreditCard($ccn);
@@ -115,6 +131,10 @@
             $cvv = $this->get("cvv");
             if (empty($cvv)){
                 return $this->addError("cvv is empty. Please provide a little number on the back.");
+            }
+
+            if (!preg_match("#^\d+$#", $cvv)){
+                return $this->addError("cvv format is not valid (only digits)");
             }
 
             //if the credit card type was not found previously, abort, no way to validate
@@ -170,6 +190,10 @@
             $cur = $this->get("cur");
             if(empty($cur)){
                 return $this->addError("cur is empty. Please provide a transaction currency.");
+            }
+
+            if (!preg_match("#^[a-z]{3}$#", $cur)){
+                return $this->addError("cur format is not valid (3 lowercase letters)");
             }
 
             if (!in_array($cur, $this->validCurrencies)){
