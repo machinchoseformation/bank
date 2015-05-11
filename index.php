@@ -4,6 +4,7 @@
 
     use \Bank\Validator\RequestParamsValidator;
     use \Bank\Response\JsonResponse;
+    use \Bank\Util\StringUtil;
 
     $app = new Slim\Slim();
 
@@ -40,29 +41,34 @@
         $response->send();
     });
 
+
     /**
-     * 
+     * Home and documentation
      */
     $app->get("/", function() use($app)
     {
-        $mid = "abcd2345abcd2345abcd2345abcd2345";
-        $ccn = "4485491159053724";
-        $amo = "99";
-        $tim = time();
-        $tok = \Bank\Util\StringUtil::getTok($mid, $ccn, $amo, $tim);
-        $app->render("doc.php", compact("mid", "ccn", "amo", "tim", "tok"));
+        //for demo query purpose...
+        $params = array(
+            "mid" => "abcd2345abcd2345abcd2345abcd2345",
+            "ccn" => "4485491159053724",
+            "amo" => "99",
+            "tim" => time()
+        );
+        $params["tok"] = StringUtil::getTok($params['mid'], $params['ccn'], $params['amo'], $params['tim']);
+
+        $app->render("doc.php", $params);
     });
+
 
     /**
      * Generate a new merchant database 
-     */
-    
+     */    
     $app->get("/merchant/generate/:num", function($num){
         $merchants = array("merchants" => array());
         for($i=0;$i<$num;$i++){
             $m = array();
-            $m["mid"] = \Bank\Util\StringUtil::randomString(32);
-            $m["secret"] = \Bank\Util\StringUtil::randomString(128);
+            $m["mid"] = StringUtil::randomString(32);
+            $m["secret"] = StringUtil::randomString(128);
 
             $merchants["merchants"][] = $m;
         }
