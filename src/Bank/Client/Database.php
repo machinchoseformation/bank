@@ -9,7 +9,7 @@
 
         public function __construct()
         {
-            $dbContent = file_get_contents("merchants.json");
+            $dbContent = file_get_contents("data/merchants.json");
             $array = json_decode($dbContent, true);
             $this->merchants = $array["merchants"];
         }
