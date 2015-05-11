@@ -43,15 +43,9 @@
                 return $this->addError("tok format is not valid (64 hexadecimal characters)");
             }
 
-            $merchantDb = new \Bank\Client\Database();
             $mid = $this->get("mid");
-            $string =   $merchantDb->getMerchantSecret($mid).
-                        $mid. 
-                        $this->get("ccn"). 
-                        $this->get("amo"). 
-                        $this->get("tim");
-
-            $token = hash("sha256", $string);
+            $token = \Bank\Util\StringUtil::getTok($mid, $this->get("ccn"), 
+                        $this->get("amo"), $this->get("tim"));
 
             if ($token !== $tok){
                 return $this->addError("tok is not valid.");

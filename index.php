@@ -31,6 +31,9 @@
         $response->send();
     });
 
+    /**
+     * Generate a new merchant database 
+     */
     $app->get("/merchant/generate/:num", function($num){
         $merchants = array("merchants" => array());
         for($i=0;$i<$num;$i++){
