@@ -74,7 +74,7 @@
 				</tr>
 				<tr>
 					<td>tes</td>
-					<td>Optionnal. Simulates a rejected payment if set to "rejected"</td>
+					<td>Optional. Simulates a rejected payment if set to "rejected"</td>
 					<td>String. Only "rejected" supported for the moment.</td>
 					<td>rejected</td>
 				</tr>
