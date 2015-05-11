@@ -5,14 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Bank API Documentation</title>
 
-		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css">
-
-		<link rel="stylesheet" href="public/css/style.css" />
-
 	</head>
 	<body>
 		<div class="container">
