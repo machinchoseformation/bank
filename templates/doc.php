@@ -14,7 +14,7 @@
 
 			<h2>Create a payment</h2>
 			<p>Send all queries to:</p>
-			<pre>http://localhost/bank/payment/create</pre>
+			<pre>http://guillaume.zz.mu/bank/payment/create</pre>
 
 			<h3>Query parameters</h3>
 			<table class="table table-striped">
@@ -125,7 +125,7 @@
 
 			<h3>Demo query URI</h3>
 			<?php 
-				$link = "http://localhost/bank/payment/create?ccn=$ccn&cvv=123&exp=122017&amo=$amo&cur=eur&mid=$mid&tim=$tim&tok=$tok";
+				$link = "http://guillaume.zz.mu/bank/payment/create?ccn=$ccn&cvv=123&exp=122017&amo=$amo&cur=eur&mid=$mid&tim=$tim&tok=$tok";
 			?>
 			<pre><a href="<?php echo $link; ?>"><?php echo $link; ?></a></pre>
 
